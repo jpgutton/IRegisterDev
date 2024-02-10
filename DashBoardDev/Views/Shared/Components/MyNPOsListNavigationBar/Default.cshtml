@@ -1,0 +1,56 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@model IEnumerable<DashBoardDev.ViewModels.vMNPONavBar>
+
+<li class="@Html.IsSelected(controller: "Clubs")">
+    <a href="@Url.Action("Dashboard_1", "NPO")"><i class="fa fa-id-card-o"></i> <span class="nav-label" data-i18n="nav.dashboard">@Localizer["AssocClubTitle"]</span> <span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "NPO", cssClass: "in")">
+        <li class="@Html.IsSelected(action: @Localizer["CreateNPO"].ToString())"><a href="@Url.Action("Create", "NPO")">@Localizer["CreateNPO"]</a></li>
+        @*<li class="@Html.IsSelected(action: @Localizer["CreateNPO"].ToString())"><a href="@Url.Action("GetMyNPOS", "NPO")">@Localizer["CreateNPO"]</a></li>*@
+
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                @*<li class="@Html.IsSelected(action: "Dashboard_2")"><a href="@Url.Action(@item.ClubID, "npo")">@Html.DisplayFor(modelItem => item.Organization)</a></li>*@
+
+                <li>
+                    <a href="#">@Html.DisplayFor(modelItem => item.Organization) <span class="fa arrow"></span></a>
+                    <ul class="@Html.IsSelected(controller: "NPO") nav nav-third-level">
+                        <li class="@Html.IsSelected(action: "Dashboard_2")">
+                            <a href="@Url.Action(@item.NPOID, "npo")" > NPO Informations</a>
+                        </li>
+                        <li class="@Html.IsSelected(controller: "NPO")">
+                            <a href="@Url.Action("DefaultFields", "npo", new { @id = @item.NPOSiteID, @state = @item.Processed })" > Default Form Fields</a>
+                        </li>
+                        <li class="@Html.IsSelected(controller: "NPO")">
+                            <a href="@Url.Action("CustomFields", "npo", new { id = @item.NPOSiteID, @state = @item.Processed })"> Custom Form Fields</a>
+                        </li>
+                        <li class="@Html.IsSelected(action: "Dashboard_2")">
+                            <a href="@Url.Action("Page", "npo", new { id = @item.NPOSiteID })" > Page content</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+
+
+
+            }
+                    }
+
+
+        @*<li class="@Html.IsSelected(action: "Dashboard_2")"><a href="@Url.Action("Dashboard_2", "Dashboards")">Dashboard v.2</a></li>
+            <li class="@Html.IsSelected(action: "Dashboard_3")"><a href="@Url.Action("Dashboard_3", "Dashboards")">Dashboard v.3</a></li>
+            <li class="@Html.IsSelected(action: "Dashboard_4_1")"><a href="@Url.Action("Dashboard_4_1", "Dashboards")">Dashboard v.4</a></li>
+            <li class="@Html.IsSelected(action: "Dashboard_5")"><a href="@Url.Action("Dashboard_5", "Dashboards")">Dashboard v.5</a></li>*@
+    </ul>
+</li>
+

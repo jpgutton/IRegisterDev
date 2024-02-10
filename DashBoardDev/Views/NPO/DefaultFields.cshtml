@@ -1,0 +1,173 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authentication;
+
+@model IList<DashBoardDev.Models.NPOFields>
+
+@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Dashboard v.1";
+}
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+
+<h1>Default fields</h1>
+
+
+@if (ViewBag.Processed != null)
+{
+    <form>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <table class="table">
+                            <tr>
+                                <th>Fields</th>
+                                <th>Type</th>
+                                <th>Activate</th>
+                                <th>Mandatory</th>
+                                <th>Visible</th>
+                            </tr>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => m[i].FieldLabel)</td>
+                                    <td>@Html.DisplayFor(m => m[i].FieldType)</td>
+                                    <td>
+                                        <div class="switch">
+                                            <div class="onoffswitch">
+                                                @Html.CheckBoxFor(m => m[i].FieldActivate, new { @disabled = "disabled", id = Html.NameFor(m => m[i].FieldActivate), @class = "onoffswitch-checkbox" })
+                                                <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldActivate)">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="switch">
+                                            <div class="onoffswitch">
+                                                @Html.CheckBoxFor(m => m[i].FieldMandatory, new { @disabled = "disabled", id = Html.NameFor(m => m[i].FieldMandatory), @class = "onoffswitch-checkbox" })
+                                                <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldMandatory)">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="switch">
+                                            <div class="onoffswitch">
+                                                @Html.CheckBoxFor(m => m[i].FieldHidden, new { @disabled = "disabled", id = Html.NameFor(m => m[i].FieldHidden), @class = "onoffswitch-checkbox" })
+                                                <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldHidden)">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+        <form asp-action="DefaultFields" asp-controller="NPO" asp-antiforgery="true">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <table class="table">
+                                <tr>
+                                    <th>Fields</th>
+                                    <th>Type</th>
+                                    <th>Activate</th>
+                                    <th>Mandatory</th>
+                                    <th>Visible</th>
+                                </tr>
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                                    @Html.HiddenFor(m => m[i].FieldName)
+                                    @Html.HiddenFor(m => m[i].NPOID)
+                                    @Html.HiddenFor(m => m[i].FieldData)
+                                    @Html.HiddenFor(m => m[i].FieldPopup)
+                                    @Html.HiddenFor(m => m[i].FieldType)
+                                    @Html.HiddenFor(m => m[i].FieldOrder)
+                                    @Html.HiddenFor(m => m[i].FieldLabel)
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => m[i].FieldLabel)</td>
+                                        <td>@Html.DisplayFor(m => m[i].FieldType)</td>
+                                        <td>
+                                            <div class="switch">
+                                                <div class="onoffswitch">
+                                                    @Html.CheckBoxFor(m => m[i].FieldActivate, new { id = Html.NameFor(m => m[i].FieldActivate), @class = "onoffswitch-checkbox" })
+                                                    <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldActivate)">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="switch">
+                                                <div class="onoffswitch">
+                                                    @Html.CheckBoxFor(m => m[i].FieldMandatory, new { id = Html.NameFor(m => m[i].FieldMandatory), @class = "onoffswitch-checkbox" })
+                                                    <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldMandatory)">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="switch">
+                                                <div class="onoffswitch">
+                                                    @Html.CheckBoxFor(m => m[i].FieldHidden, new { id = Html.NameFor(m => m[i].FieldHidden), @class = "onoffswitch-checkbox" })
+                                                    <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldHidden)">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Submit fields" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+}
+
+
+
+
+
+
+
+
+        <br />
+        <br />
+        <br />
+
+
+        <br />
+        <br />
+        <br />
+
+
+

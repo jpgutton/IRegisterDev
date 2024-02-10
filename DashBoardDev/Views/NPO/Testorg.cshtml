@@ -1,0 +1,134 @@
+﻿@using System.Security.Principal
+@model FrontEndAdmin.ViewModels.vMNPO
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Landing page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC6_Seed_Project</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/index/bootstrap.css" />
+        <link rel="stylesheet" href="~/sources/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/index/animate.css" />
+        @*<link rel="stylesheet" href="~/lib_bower/metisMenu/dist/metisMenu.css" />*@
+        <link rel="stylesheet" href="~/index/style.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body id="page-top" class="landing-page">
+
+    <br />
+    <br />
+    <form asp-action="SignIn" asp-controller="NPO" class="form-horizontal">
+        
+        <div class="form-group">
+            <label asp-for="OrganizationSiteName" class="col-sm-2 control-label">Subscribe</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="OrganizationSiteName" placeholder="Email address" />
+                <span asp-validation-for="OrganizationSiteName"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationWebSite" class="col-sm-2 control-label">Subscribe</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="OrganizationWebSite" placeholder="Name" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </form>
+
+
+    <br />
+    <br />
+
+
+    <environment names="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+        <script src="~/index/bootstrap.js"></script>
+        <script src="~/js/jquery.validate.js"></script>
+        <script src="~/js/jquery-validate-unobtrusive.js"></script>
+
+        @*<script src="~/index/jquery.metisMenu.js"></script>
+        <script src="~/index/jquery.slimscroll.js"></script>
+        <script src="~/index/inspinia.js"></script>
+        <script src="~/index/pace.min.js"></script>
+        <script src="~/index/wow.min.js"></script>*@
+        @*<script src="~/js/script.js" asp-append-version="true"></script>*@
+    </environment>
+
+
+    @*<script>
+
+        $(document).ready(function () {
+
+            $('body').scrollspy({
+                target: '.navbar-fixed-top',
+                offset: 80
+            });
+
+            // Page scrolling feature
+            $('a.page-scroll').bind('click', function (event) {
+                var link = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $(link.attr('href')).offset().top - 50
+                }, 500);
+                event.preventDefault();
+                $('#navbar').collapse('hide');
+            });
+        });
+
+        var cbpAnimatedHeader = (function () {
+            var docElem = document.documentElement,
+                    header = document.querySelector('.navbar-default'),
+                    didScroll = false,
+                    changeHeaderOn = 200;
+            function init() {
+                window.addEventListener('scroll', function (event) {
+                    if (!didScroll) {
+                        didScroll = true;
+                        setTimeout(scrollPage, 250);
+                    }
+                }, false);
+            }
+            function scrollPage() {
+                var sy = scrollY();
+                if (sy >= changeHeaderOn) {
+                    $(header).addClass('navbar-scroll')
+                }
+                else {
+                    $(header).removeClass('navbar-scroll')
+                }
+                didScroll = false;
+            }
+            function scrollY() {
+                return window.pageYOffset || docElem.scrollTop;
+            }
+            init();
+
+        })();
+
+    </script>*@
+
+
+
+</body>
+</html>

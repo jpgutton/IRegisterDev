@@ -1,0 +1,9 @@
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\bin\Debug\netcoreapp1.1\DashBoardDev.deps.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\bin\Debug\netcoreapp1.1\DashBoardDev.runtimeconfig.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\bin\Debug\netcoreapp1.1\DashBoardDev.runtimeconfig.dev.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\bin\Debug\netcoreapp1.1\DashBoardDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\bin\Debug\netcoreapp1.1\DashBoardDev.pdb
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\obj\Debug\netcoreapp1.1\DashBoardDev.csprojResolveAssemblyReference.cache
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\obj\Debug\netcoreapp1.1\DashBoardDev.AssemblyInfo.cs
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\obj\Debug\netcoreapp1.1\DashBoardDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\DashBoardDev\obj\Debug\netcoreapp1.1\DashBoardDev.pdb

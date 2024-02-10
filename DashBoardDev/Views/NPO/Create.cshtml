@@ -1,0 +1,292 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authentication;
+
+@model DashBoardDev.ViewModels.vMNPO
+@*@model FrontEndAdmin.Models.Country*@
+
+@inject IViewLocalizer Localizer
+
+
+@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = @Localizer["CreateNPOTitle"];
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>Select</option>";
+            $('#StateID').html(items);
+        });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#OrganizationCountry').change(function () {
+                var url = '@Url.Content("~/")' + "NPO/GetStates";
+                var ddlsource = "#OrganizationCountry";
+                $.getJSON(url, { CountryName: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#OrganizationState").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+                    $('#OrganizationState').html(items);
+                });
+            });
+        });
+</script>
+
+
+<h2>@Localizer["CreateNPOTitle"]</h2>
+
+<br/>
+
+<form asp-action="Create" asp-controller="NPO">
+    <div class="form-horizontal">
+        <h4>@Localizer["NPOAddress"]</h4>
+        <div class="form-group">
+            <label asp-for="Organization" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="Organization" class="form-control" />
+                <span asp-validation-for="Organization" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationStreet1" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationStreet1" class="form-control" />
+                <span asp-validation-for="OrganizationStreet1" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationStreet2" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationStreet2" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationCity" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationCity" class="form-control" />
+                <span asp-validation-for="OrganizationCity" class="text-danger" />
+            </div>
+            <label asp-for="OrganizationZipCode" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="OrganizationZipCode" class="form-control" />
+                <span asp-validation-for="OrganizationZipCode" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationCountry" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <select asp-for="OrganizationCountry" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.ListofCountry,"CountryName","CountryName"))"></select>
+                <span asp-validation-for="OrganizationCountry" class="text-danger" />
+            </div>
+            <label asp-for="OrganizationState" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <select asp-for="OrganizationState" class="form-control" id="OrganizationState" name="OrganizationState"
+                        asp-items="@(new SelectList(string.Empty,"StateName","StateName"))"></select>
+                @*<span asp-validation-for="OrganizationState" class="text-danger" />*@
+            </div>
+        </div>
+
+
+
+
+
+
+        @*<div class="form-group">
+            <label asp-for="OrganizationCountry" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationCountry" class="form-control" />
+                <span asp-validation-for="OrganizationCountry" class="text-danger" />
+            </div>
+            <label asp-for="OrganizationState" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="OrganizationState" class="form-control" />
+                <span asp-validation-for="OrganizationState" class="text-danger" />
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label asp-for="OrganizationEmail" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationEmail" class="form-control" />
+                <span asp-validation-for="OrganizationEmail" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationSiteName" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="OrganizationSiteName" class="form-control" />
+                <span asp-validation-for="OrganizationSiteName" class="text-danger" />
+            </div>
+        </div>
+
+
+        <br />
+        <hr />
+        <br />
+
+        <h4>@Localizer["NPO2ndAdmin"]</h4>
+
+        <div class="form-group">
+            <label asp-for="SndFirstname" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="SndFirstname" class="form-control" />
+            </div>
+            <label asp-for="SndLastName" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="SndLastName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SndAddress" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="SndAddress" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SndAddress2" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="SndAddress2" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SndCity" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="SndCity" class="form-control" />
+            </div>
+            <label asp-for="SndZipCode" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="SndZipCode" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SndCountry" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="SndCountry" class="form-control" />
+            </div>
+            <label asp-for="SndState" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="SndState" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SndEmail" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="SndEmail" class="form-control" />
+            </div>
+            <label asp-for="SndTelephone" class="col-md-2 control-label"></label>
+            <div class="col-md-4">
+                <input asp-for="SndTelephone" class="form-control" />
+            </div>
+        </div>
+
+
+        <br />
+        <hr />
+        <br />
+
+        <h4>@Localizer["NPOAdditionnalInfo"]</h4>
+
+        <div class="form-group">
+            <label asp-for="OrganizationWebSite" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="OrganizationWebSite" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationFacebook" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                <input asp-for="OrganizationFacebook" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OrganizationTwitter" class="col-md-2 control-label"></label>
+            <div class="col-md-3">
+                <input asp-for="OrganizationTwitter" class="form-control" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@*@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>Select</option>";
+            $('#StateID').html(items);
+
+            $('#CountryID').change(function () {
+                var url = '@Url.Content("~/")' + "NPO/GetStates";
+                var ddlsource = "#CountryID";
+                $.getJSON(url, { CountryID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#StateID").empty();
+                    $.each(data, function (i, state) {
+                        items += "<option value='" + state.value + "'>" + state.text + "</option>";
+                    });
+                    $('#StateID').html(items);
+                });
+
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CountryID').change(function () {
+                var url = '@Url.Content("~/")' + "NPO/GetStates";
+                var ddlsource = "#CountryID";
+                $.getJSON(url, { CountryID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#StateID").empty();
+                    $.each(data, function (i, state) {
+                        items += "<option value='" + state.value + "'>" + state.text + "</option>";
+                    });
+                    $('#StateID').html(items);
+                });
+                
+            });
+        });
+    </script>
+
+
+}*@

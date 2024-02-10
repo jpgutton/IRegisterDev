@@ -1,0 +1,160 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authentication;
+
+@model IList<FrontEndAdmin.Models.NPOFields>
+
+@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Dashboard v.1";
+}
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+
+<h2>Default fields</h2>
+
+<br />
+<div class="switch">
+    <div class="onoffswitch">
+        <input type="checkbox" checked class="onoffswitch-checkbox" id="example1">
+        <label class="onoffswitch-label" for="example1">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+</div>
+
+
+
+<form asp-action="DefaultFields" asp-controller="NPO">
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Fields
+            </th>
+            <th>
+                Activate
+            </th>
+            <th>
+                Mandatory
+            </th>
+        </tr>
+
+
+
+        @for (int i = 0; i < Model.Count; i++)
+            {
+            @Html.HiddenFor(m => m[i].FieldName)
+
+
+            <div class="form-group">
+
+                <tr>
+                    <td>
+                        @*@Html.LabelFor(m => m[i].FieldLabel, htmlAttributes: new { @class = "control-label col-md-1" })*@
+                        @Html.DisplayFor(m => m[i].FieldName)
+                    </td>
+                    <td>
+                        @*<!-- bootstrap button group -->
+                        <div class="btn-group btn-toggle-radio" data-toggle=buttons-radio>
+                            <button type="button" data-model-field="checkboxField" class="btn btn-default" id=buttonFilterYes>Yes</button>
+                            <button type="button" data-model-field="checkboxField" class="btn btn-success active" id="buttonFilterNo">No</button>
+                        </div>
+                        <!-- MVC razor code -->
+                        @Html.CheckBoxFor(m => m[i].FieldActivate, new { id = Html.NameFor(m => m[i].FieldActivate) })*@
+
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                @Html.CheckBoxFor(m => m[i].FieldActivate, new { id = Html.NameFor(m => m[i].FieldActivate), @class = "onoffswitch-checkbox" })
+                                <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldActivate)">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        @* ==== This is for a check box with style *@
+                        @*<div>
+                            @Html.CheckBoxFor(m => m[i].FieldMandatory, new { id = Html.NameFor(m => m[i].FieldMandatory), @class = "regular-checkbox" })
+                            <label for="@Html.NameFor(m => m[i].FieldMandatory)">
+                            </label>
+                        </div>*@
+
+
+
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                @Html.CheckBoxFor(m => m[i].FieldMandatory, new { id = Html.NameFor(m => m[i].FieldMandatory), @class = "onoffswitch-checkbox" })
+                                <label class="onoffswitch-label" for="@Html.NameFor(m => m[i].FieldMandatory)">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+
+                                @*@Html.CheckBoxFor(m => m[i].FieldMandatory, new { @class = "onoffswitch-checkbox" })
+                                <label class="onoffswitch-label" for="[i].FieldMandatory">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>*@
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+
+        }
+
+</table>
+
+
+
+
+
+
+
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@*@section Scripts{
+<script type="text/javascript">
+
+$(".btn-toggle-radio button").click(function () {
+	//  do the Bootstrap formatting
+	$(this).siblings().removeClass("active btn-success");
+	$(this).siblings().addClass("btn-default");
+	$(this).removeClass("btn-default");
+	$(this).addClass("active btn-success");
+
+	//  get the data attribute that matches the model field name
+	var checkboxToUpdate = $(this).attr("data-model-field");
+	//  did the user click YES or NO?
+	if ($(this).attr("id") == "buttonFilterYes") {
+		$("#" + checkboxToUpdate).prop("checked", true);
+	} else {
+		$("#" + checkboxToUpdate).prop("checked", false);
+	}
+});
+
+</script>
+
+}*@

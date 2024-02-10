@@ -1,0 +1,9 @@
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\bin\Debug\netcoreapp1.1\APIDev.deps.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\bin\Debug\netcoreapp1.1\APIDev.runtimeconfig.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\bin\Debug\netcoreapp1.1\APIDev.runtimeconfig.dev.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\bin\Debug\netcoreapp1.1\APIDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\bin\Debug\netcoreapp1.1\APIDev.pdb
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\obj\Debug\netcoreapp1.1\APIDev.csprojResolveAssemblyReference.cache
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\obj\Debug\netcoreapp1.1\APIDev.AssemblyInfo.cs
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\obj\Debug\netcoreapp1.1\APIDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\APIDev\obj\Debug\netcoreapp1.1\APIDev.pdb

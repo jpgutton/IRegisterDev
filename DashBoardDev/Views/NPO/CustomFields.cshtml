@@ -1,0 +1,174 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authentication;
+
+@model DashBoardDev.ViewModels.vMNPOCustomFields
+@*@model IList<FrontEndAdmin.ViewModels.vMNPOCustomFields>*@
+
+    @{
+        Layout = "_DashboardLayout";
+        ViewData["Title"] = "Dashboard v.1";
+    }
+
+    <h1>Custom Fields (additionnal)</h1>
+
+@if (ViewBag.Processed != null)
+{
+    <form asp-action="CustomFields" asp-controller="NPO" asp-antiforgery="true">
+        <br />
+        <br />
+        <table class="table">
+            <tr>
+                <th>Fields</th>
+                <th>Type</th>
+                <th>Activate</th>
+                <th>Mandatory</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model.NPOFields)
+            {
+                if (Model.SelectedFields != null)
+                {
+                    if (item.FieldName == Model.SelectedFields.FieldName)
+                    {
+                        @:<tr class="SelectedFields">
+                    }
+                    else
+                    {
+                        @:<tr>
+                    }
+                }
+                else
+                {
+                    @:<tr>
+                }
+                <td>@item.FieldLabel</td>
+                <td>@item.FieldType</td>
+                <td>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            @Html.CheckBoxFor(modelItem => item.FieldActivate, new { @disabled = "disabled", id = @item.FieldActivate, @class = "onoffswitch-checkbox" })
+                            <label class="onoffswitch-label" for=@item.FieldActivate>
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            @Html.CheckBoxFor(modelItem => item.FieldMandatory, new { @disabled = "disabled", id = @item.FieldMandatory, @class = "onoffswitch-checkbox" })
+                            <label class="onoffswitch-label" for=@item.FieldMandatory>
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input type="submit"
+                           formaction="/npo/SelectCustomField/@item.FieldName"
+                           value="Select" />
+                </td>
+                    @:</tr>
+            }
+        </table>
+    </form>
+
+    <br /><br />
+    {
+        if (Model.SelectedFields != null)
+        {
+            if (Model.DisplayMode == "ReadOnly")
+            {
+                Html.RenderPartial
+                ("ShowCustomFields", Model.SelectedFields);
+            }
+        }
+    }
+
+
+}
+else
+{
+    <form asp-action="CustomFields" asp-controller="NPO" asp-antiforgery="true">
+        <input type="submit"
+               value="Insert" formaction="/npo/NewCustomFields" />
+        <br />
+        <br />
+        <table class="table">
+            <tr>
+                <th>Fields</th>
+                <th>Activate</th>
+                <th colspan="2">Action</th>
+            </tr>
+            @foreach (var item in Model.NPOFields)
+            {
+                if (Model.SelectedFields != null)
+                {
+                    if (item.FieldName == Model.SelectedFields.FieldName)
+                    {
+                        @:<tr class="SelectedFields">
+                    }
+                    else
+                    {
+                        @:<tr>
+                    }
+                }
+                else
+                {
+                    @:<tr>
+                }
+                <td>@item.FieldLabel</td>
+                <td>@item.FieldType</td>
+                <td>
+                    <input type="submit"
+                           formaction="/npo/SelectCustomField/@item.FieldName"
+                           value="Select" />
+                </td>
+                <td>
+                    <input type="submit"
+                           formaction="/npo/DeleteCustomFields/@item.FieldName"
+                           value="Delete" />
+                </td>
+                    @:</tr>
+            }
+        </table>
+    </form>
+
+    <br /><br />
+    {
+        if (Model.SelectedFields != null)
+        {
+            if (Model.DisplayMode == "ReadOnly")
+            {
+                Html.RenderPartial
+                ("ShowCustomFields", Model.SelectedFields);
+            }
+            if (Model.DisplayMode == "ReadWrite")
+            {
+                Html.RenderPartial
+                ("EditCustomFields", Model.SelectedFields);
+            }
+        }
+        if (Model.DisplayMode == "WriteOnly")
+        {
+            Html.RenderPartial("InsertCustomFields",
+            new DashBoardDev.Models.NPOFields());
+        }
+    }
+
+
+        }
+
+
+<br />
+<br />
+<br />
+
+
+

@@ -1,0 +1,98 @@
+﻿@model DashBoardDev.Models.NPOFields
+
+@if (ViewBag.Processed != null)
+{
+    <form asp-action="EditCustomFields" asp-controller="NPO" asp-antiforgery="true">
+        @Html.Hidden(Model.FieldName)
+        <table>
+            <tr>
+                <td>Field Label</td>
+                <td>@Model.FieldLabel</td>
+            </tr>
+            <tr>
+                <td>Field Type</td>
+                <td>@Model.FieldType</td>
+            </tr>
+            <tr>
+                <td>Activated</td>
+                <td>@Model.FieldActivate</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>@Model.FieldMandatory</td>
+            </tr>
+            <tr>
+                <td>Hidden</td>
+                <td>@Model.FieldHidden</td>
+            </tr>
+            <tr>
+                <td>Data</td>
+                <td>@Model.FieldData</td>
+            </tr>
+            <tr>
+                <td>Popup</td>
+                <td>@Model.FieldPopup</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Cancel"
+                           formaction="/npo/customfields/@ViewBag.NPOID" />
+                </td>
+            </tr>
+        </table>
+    </form>
+}
+else
+{
+    <form asp-action="EditCustomFields" asp-controller="NPO" asp-antiforgery="true">
+        @Html.Hidden(Model.FieldName)
+        <table>
+            <tr>
+                <td>Field Label</td>
+                <td>@Model.FieldLabel</td>
+            </tr>
+            <tr>
+                <td>Field Type</td>
+                <td>@Model.FieldType</td>
+            </tr>
+            <tr>
+                <td>Activated</td>
+                <td>@Model.FieldActivate</td>
+            </tr>
+            <tr>
+                <td>Mandatory</td>
+                <td>@Model.FieldMandatory</td>
+            </tr>
+            <tr>
+                <td>Hidden</td>
+                <td>@Model.FieldHidden</td>
+            </tr>
+            <tr>
+                <td>Data</td>
+                <td>@Model.FieldData</td>
+            </tr>
+            <tr>
+                <td>Popup</td>
+                <td>@Model.FieldPopup</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Edit"
+                           formaction="/npo/editcustomfields/@Model.FieldName" />
+                    <input type="submit" value="Cancel"
+                           formaction="/npo/customfields/@ViewBag.NPOID" />
+                </td>
+            </tr>
+
+        </table>
+
+
+
+    </form>
+
+
+
+
+}
+
+

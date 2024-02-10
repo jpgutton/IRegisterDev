@@ -1,0 +1,101 @@
+﻿@model DashBoardDev.Models.NPOFields
+
+<form asp-action="InsertCustomFields" asp-controller="NPO" asp-antiforgery="true">
+    @Html.HiddenFor(m =>m.FieldName)
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label asp-for="FieldLabel" class="col-md-2 control-label"></label>
+                <div class="col-md-4">
+                    <input asp-for="FieldLabel" class="form-control" />
+                    <span asp-validation-for="FieldLabel" class="text-danger" />
+                </div>
+                <label asp-for="FieldType" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    @Html.DropDownListFor(m => m.FieldType, new SelectList(
+                        new List<Object>{
+                            new { value = "TextBox" , text = "TextBox"  },
+                            new { value = "TextArea" , text = "TextArea" },
+                            new { value = "CheckBox" , text = "CheckBox" },
+                            new { value = "CheckBoxList" , text = "CheckBoxList" },
+                            new { value = "RadioButtonList" , text = "RadioButtonList" },
+                            new { value = "Select" , text = "Select" },
+                        },
+                        "value",
+                        "text",
+                        "TextBox"), new { @class = "form-control" })
+                    @*<input asp-for="FieldType" class="form-control" />*@
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label asp-for="FieldActivate" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            @Html.CheckBoxFor(m => m.FieldActivate, new { id = Html.NameFor(m => m.FieldActivate), @class = "onoffswitch-checkbox", value = true })
+                            <label class="onoffswitch-label" for="@Html.NameFor(m => m.FieldActivate)">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <label asp-for="FieldMandatory" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            @Html.CheckBoxFor(m => m.FieldMandatory, new { id = Html.NameFor(m => m.FieldMandatory), @class = "onoffswitch-checkbox", value = true })
+                            <label class="onoffswitch-label" for="@Html.NameFor(m => m.FieldMandatory)">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <label asp-for="FieldHidden" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            @Html.CheckBoxFor(m => m.FieldHidden, new { id = Html.NameFor(m => m.FieldHidden), @class = "onoffswitch-checkbox", value = false })
+                            <label class="onoffswitch-label" for="@Html.NameFor(m => m.FieldHidden)">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <label asp-for="FieldData" class="col-md-2 control-label"></label>
+                <div class="col-md-8">
+                    @Html.TextAreaFor(m => m.FieldData, 10, 100, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <label asp-for="FieldPopup" class="col-md-2 control-label"></label>
+                <div class="col-md-8">
+                    @Html.TextAreaFor(m => m.FieldPopup, 10, 100, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-default" formaction="/npo/updatecustomfields" />
+        <input type="submit" value="Cancel" class="btn btn-default" formaction="/npo/customfields/@ViewBag.NPOID" />
+
+
+    </div>
+</form>
+
+
+

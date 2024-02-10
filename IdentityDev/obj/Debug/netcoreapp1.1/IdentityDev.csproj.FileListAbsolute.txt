@@ -1,0 +1,9 @@
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\bin\Debug\netcoreapp1.1\IdentityDev.deps.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\bin\Debug\netcoreapp1.1\IdentityDev.runtimeconfig.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\bin\Debug\netcoreapp1.1\IdentityDev.runtimeconfig.dev.json
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\bin\Debug\netcoreapp1.1\IdentityDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\bin\Debug\netcoreapp1.1\IdentityDev.pdb
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\obj\Debug\netcoreapp1.1\IdentityDev.csprojResolveAssemblyReference.cache
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\obj\Debug\netcoreapp1.1\IdentityDev.AssemblyInfo.cs
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\obj\Debug\netcoreapp1.1\IdentityDev.dll
+C:\Users\jpgut\Documents\IRegister\IRegisterDev\IdentityDev\obj\Debug\netcoreapp1.1\IdentityDev.pdb
